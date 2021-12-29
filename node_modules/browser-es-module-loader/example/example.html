@@ -1,0 +1,28 @@
+<!doctype html>
+  <meta charset="utf-8">
+  <script src="../dist/babel-browser-build.js"></script>
+  <script src="../dist/browser-es-module-loader.js"></script>
+  <script>
+    var loader = new BrowserESModuleLoader();
+    loader.import('./es-module.js').then(function(m) {
+     return m.default();
+    })
+    .then(function (m) {
+      console.log(m);
+    });
+  </script>
+
+  <script type="module">
+    export default class Foo {
+      bar(){
+        console.log("baz");
+      }
+
+    }
+  </script>
+  <script type="module">
+    import fn from './es-module.js';
+    console.log(fn);
+  </script>
+
+  <script type="module" src="another-module.js"></script>
